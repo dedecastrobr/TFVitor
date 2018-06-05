@@ -20,7 +20,7 @@ public class Menu {
 
 	public void show() {
 
-		System.out.println(nomeMenu);
+		System.out.println("\n" + nomeMenu);
 
 		for (String string : opsMenu) {
 			System.out.println(opsMenu.indexOf(string) + " - " + string);
@@ -43,5 +43,13 @@ public class Menu {
 
 		return opSelecionada;
 	}
-
+	
+	public boolean checkValue(String value) {
+		try {
+			int x = Integer.parseInt(value);
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
 }

@@ -4,12 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import tools.DBConnection;
 import tools.Menu;
 
 	public class menu {
 		
 		public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Produtos", "Pedidos", "Estoque");
-		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente");
+		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente", "Alterar Cliente", "Remover Cliente");
 		public static Scanner scan = new Scanner(System.in);
 		public static int numMenu = 0;
 		
@@ -30,8 +31,13 @@ import tools.Menu;
 							inserirCliente();
 							break;
 						case 1:
+							listarClientes();
 							break;
 						case 2:
+							break;
+						case 3:
+							break;
+						case 4:
 							break;
 						default:
 							break;
@@ -57,6 +63,11 @@ import tools.Menu;
 			if(al != null) {
 				al.create();
 			}
+		}
+		
+		public static void listarClientes() {
+			DBConnection conn = new DBConnection();
+			conn.executeSQL("select c.nome, c.email, c.cpf from Clientes c");
 		}
 		
 		public static void limpaTela() {

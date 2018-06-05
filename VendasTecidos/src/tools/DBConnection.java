@@ -43,7 +43,7 @@ public class DBConnection {
 			if (stmt.execute(sql)) {
 				rs = stmt.getResultSet();
 				while (rs.next()) {
-					System.out.println(rs.getString(1) + " - " + rs.getString(2) + " - " + rs.getDate(3));
+					System.out.println(rs.getString(1) + " - " + rs.getString(2) + " - " + rs.getLong(3));
 				}
 			} else {
 				int count = stmt.getUpdateCount();
