@@ -32,7 +32,7 @@ public class Cliente {
 			Statement stmt = null;
 			
 			String sql = "insert into Clientes(nome, email, cpf) values('" + this.nomeCliente + "','" + this.emailCliente + "'," + this.cpfCliente + ")";
-			System.out.println(sql);
+			
 			try {
 				stmt = conn.createStatement();
 				if(stmt.execute(sql)) {

@@ -10,15 +10,15 @@ public class DBConnection {
 
 	private Connection conn = null;
 
-	private String USER = "root";
-	private String PASSWD = "cazella1998";
+	private String USER = "13100184";
+	private String PASSWD = "13100184";
 	private String BANCO = "13100184";
 
 	public DBConnection() {
 
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/" + BANCO + "?user=" + USER + "&password=" + PASSWD);
+			conn = DriverManager.getConnection("http://bdsql01.stoinacio.com.br/" + BANCO + "?user=" + USER + "&password=" + PASSWD);
 
 		} catch (SQLException e) {
 
