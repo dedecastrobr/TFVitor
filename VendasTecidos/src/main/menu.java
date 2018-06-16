@@ -67,7 +67,7 @@ import tools.Menu;
 		
 		public static void listarClientes() {
 			DBConnection conn = new DBConnection();
-			conn.executeSQL("select c.nome, c.email, c.cpf from TF_Clientes c");
+			conn.executeSQL("select c.nome, c.email, c.cpf from Clientes c");
 		}
 		
 		public static void limpaTela() {
