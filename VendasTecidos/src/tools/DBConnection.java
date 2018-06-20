@@ -49,6 +49,8 @@ public class DBConnection {
 				int count = stmt.getUpdateCount();
 				if (count >= 1) {
 					System.out.println("Registro Inserido com sucesso!");
+				}else {
+					System.out.println("Registro Falhou!");
 				}
 			}
 		} catch (SQLException e) {

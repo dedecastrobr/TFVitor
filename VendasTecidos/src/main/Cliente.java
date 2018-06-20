@@ -10,6 +10,7 @@ import tools.Menu;
 
 public class Cliente {
 	
+	private int idCliente = 0;
 	private String nomeCliente = "";
 	private String emailCliente = "";
 	private String cpfCliente = "";
@@ -47,5 +48,8 @@ public class Cliente {
 				e.printStackTrace();
 			}
 		}
-	
+
+	public int getIdCliente() {
+		return idCliente;
+	}
 }
