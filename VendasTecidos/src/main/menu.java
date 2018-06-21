@@ -10,7 +10,7 @@ import tools.Menu;
 	public class menu {
 		
 		public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Produtos", "Pedidos", "Estoque");
-		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente", "Alterar Cliente", "Remover Cliente");
+		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente");
 		public static Scanner scan = new Scanner(System.in);
 		public static int numMenu = 0;
 		
@@ -34,13 +34,10 @@ import tools.Menu;
 							listarClientes();
 							break;
 						case 2:
-							break;
-						case 3:
-							break;
-						case 4:
+							buscaCliente();
 							break;
 						default:
-							break;
+							break;			
 						}
 						menuC.show();
 						op2 = menu.getOption();
@@ -67,7 +64,15 @@ import tools.Menu;
 		
 		public static void listarClientes() {
 			DBConnection conn = new DBConnection();
-			conn.executeSQL("select c.nome, c.email, c.cpf from Clientes c");
+			conn.executeSQL("select c.nome, c.email, c.endereco, c.cpf from Clientes c");
+		}
+		
+		public static void buscaCliente() {
+			String buscacpf = "";
+			System.out.println("Digite o CPF do cliente: ");
+			buscacpf = scan.nextLine();
+			DBConnection conn = new DBConnection();
+			conn.executeSQLBusca("select c.nome, c.email, c.endereco, c.cpf from Clientes c where cpf=" + buscacpf);
 		}
 		
 		public static void limpaTela() {

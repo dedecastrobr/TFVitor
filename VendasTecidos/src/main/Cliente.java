@@ -14,6 +14,7 @@ public class Cliente {
 	private String nomeCliente = "";
 	private String emailCliente = "";
 	private String cpfCliente = "";
+	private String endereco = "";
 	private Scanner scan = Menu.scan;
 	
 	public Cliente() {
@@ -22,6 +23,9 @@ public class Cliente {
 
 		System.out.println("Informe o e-mail do cliente: ");
 		this.emailCliente = scan.nextLine();
+		
+		System.out.println("Informe o endereço do cliente: ");
+		this.endereco = scan.nextLine();
 
 		System.out.println("Informe a CPF do cliente: ");
 		this.cpfCliente = scan.nextLine();
@@ -32,20 +36,25 @@ public class Cliente {
 			Connection conn = (new DBConnection()).getConn();
 			Statement stmt = null;
 			
-			String sql = "insert into Clientes(nome, email, cpf) values('" + this.nomeCliente + "','" + this.emailCliente + "'," + this.cpfCliente + ")";
-			
-			try {
-				stmt = conn.createStatement();
-				if(stmt.execute(sql)) {
-					System.out.println("Não funcionou");
-				}else {
-					int count = stmt.getUpdateCount();
-					if (count >= 1) {
-						System.out.println("Registro Inserido com sucesso!");
+			if (cpfCliente.length() == 11) {
+				String sql = "insert into Clientes(nome, email, cpf, endereco) values('" + this.nomeCliente + "','"
+						+ this.emailCliente + "','" + this.cpfCliente + "','" + this.endereco + "')";
+				//System.out.println("print--> " + sql);
+				try {
+					stmt = conn.createStatement();
+					if (stmt.execute(sql)) {
+						System.out.println("Não funcionou");
+					} else {
+						int count = stmt.getUpdateCount();
+						if (count >= 1) {
+							System.out.println("Registro Inserido com sucesso!");
+						}
 					}
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
+			}else {
+				System.out.println("Dados Inválidos!");
 			}
 		}
 

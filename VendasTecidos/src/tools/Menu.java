@@ -28,6 +28,15 @@ public class Menu {
 		System.out.println("99 - Sair");
 
 	}
+	
+	public void showOps() {
+
+		for (String string : opsMenu) {
+			System.out.println(opsMenu.indexOf(string) + " - " + string);
+		}
+		System.out.println("99 - Sair");
+
+	}
 
 	public int getOption() {
 

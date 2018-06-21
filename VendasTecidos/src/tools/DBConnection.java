@@ -5,9 +5,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.List;
 
 public class DBConnection {
 
+	public static List<String> opsMenuBusca = Arrays.asList("Alterar", "Excluir");
 	private Connection conn = null;
 
 	private String USER = "root";
@@ -42,8 +45,53 @@ public class DBConnection {
 			stmt = conn.createStatement();
 			if (stmt.execute(sql)) {
 				rs = stmt.getResultSet();
+				System.out.println("Clientes encontrados: ");
 				while (rs.next()) {
-					System.out.println(rs.getString(1) + " - " + rs.getString(2) + " - " + rs.getLong(3));
+					System.out.println("____________________________");
+					System.out.println("- " + rs.getString(1) + "\n- " + rs.getString(2) + "\n- " + rs.getString(3) + "\n- " + rs.getLong(4));
+				}
+				System.out.println("____________________________");
+			} else {
+				int count = stmt.getUpdateCount();
+				if (count >= 1) {
+					System.out.println("Registro Inserido com sucesso!");
+				}else {
+					System.out.println("Registro Falhou!");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void executeSQLBusca(String sql) {
+
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			stmt = conn.createStatement();
+			if (stmt.execute(sql)) {
+				rs = stmt.getResultSet();
+				System.out.println("Cliente encontrado: ");
+				while (rs.next()) {
+					System.out.println("____________________________");
+					System.out.println("- " + rs.getString(1) + "\n- " + rs.getString(2) + "\n- " + rs.getString(3) + "\n- " + rs.getLong(4));
+				}
+				System.out.println("____________________________");
+				Menu menu = new Menu("", opsMenuBusca);
+				menu.showOps();
+				int Ops = Menu.scan.nextInt();
+				switch(Ops) {
+					case 0:
+						//alterar
+						break;
+						//remover
+					case 1:
+						break;
+					default:
+						break;
 				}
 			} else {
 				int count = stmt.getUpdateCount();
