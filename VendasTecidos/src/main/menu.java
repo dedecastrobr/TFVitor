@@ -64,7 +64,7 @@ import tools.Menu;
 		
 		public static void listarClientes() {
 			DBConnection conn = new DBConnection();
-			conn.executeSQL("select c.nome, c.email, c.endereco, c.cpf from Clientes c");
+			conn.executeSQL("select c.nome, c.email, c.endereco, c.cpf, c.idCliente from Clientes c");
 		}
 		
 		public static void buscaCliente() {
