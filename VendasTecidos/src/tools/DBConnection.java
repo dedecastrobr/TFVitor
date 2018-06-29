@@ -22,8 +22,11 @@ public class DBConnection {
 	public DBConnection() {
 
 		try {
-
 			conn = DriverManager.getConnection(URL + "/" + BANCO + "?user=" + USER + "&password=" + PASSWD);
+			
+			if (conn != null) {
+		        System.out.println("Connected");
+		    }
 
 		} catch (SQLException e) {
 
@@ -89,24 +92,27 @@ public class DBConnection {
 					case 0:
 						//alterar
 						break;
+						
+					case 1:
 						//remover
 						try (Connection conn = DriverManager.getConnection(URL, USER, PASSWD)) {
 							
-							String sql2 = "DELETE FROM clientes WHERE idCliente = '"+rs.getInt(5)+"'";
+							String sql2 = "DELETE FROM clientes WHERE idCliente = ?";
 							
 							PreparedStatement statement = conn.prepareStatement(sql2);
-							statement.setInt(rs.getInt(5));
+							statement.setInt(1, rs.getInt(1));
 							
 							int rowsDeleted = statement.executeUpdate();
 							if (rowsDeleted > 0) {
-								System.out.println("A user was deleted successfully!");
+								System.out.println("Cliente deletado com sucesso!");
+							
 							}
 							
 						} catch (SQLException ex) {
 							ex.printStackTrace();
-}
-					case 1:
+						}
 						break;
+						
 					default:
 						break;
 				}

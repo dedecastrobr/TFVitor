@@ -64,7 +64,7 @@ import tools.Menu;
 		
 		public static void listarClientes() {
 			DBConnection conn = new DBConnection();
-			conn.executeSQL("select c.nome, c.email, c.endereco, c.cpf, c.idCliente from Clientes c");
+			conn.executeSQLCliente("select c.nome, c.email, c.endereco, c.cpf, c.idCliente from Clientes c");
 		}
 		
 		public static void buscaCliente() {
@@ -72,12 +72,16 @@ import tools.Menu;
 			System.out.println("Digite o CPF do cliente: ");
 			buscacpf = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLBusca("select c.nome, c.email, c.endereco, c.cpf from Clientes c where cpf=" + buscacpf);
+			conn.executeSQLBusca("select c.nome, c.email, c.endereco, c.cpf, c.idCliente from Clientes c where cpf=" + buscacpf);
 		}
 		
 		public static void limpaTela() {
 			System.out.println("\033[2J");
 	
+		}
+		
+		public static void inserirProduto() {
+			
 		}
 }
 
