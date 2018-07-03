@@ -40,7 +40,7 @@ public class DBConnection {
 		return conn;
 	}
 
-	public void executeSQL(String sql) {
+	public void executeSQLCliente(String sql) {
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -69,7 +69,7 @@ public class DBConnection {
 		}
 	}
 	
-	public void executeSQLBusca(String sql) {
+	public void executeSQLBuscaC(String sql) {
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -79,7 +79,7 @@ public class DBConnection {
 			stmt = conn.createStatement();
 			if (stmt.execute(sql)) {
 				rs = stmt.getResultSet();
-				System.out.println("Cliente encontrado: ");
+				System.out.println("Clientes encontrados: ");
 				while (rs.next()) {
 					System.out.println("____________________________");
 					System.out.println("- " + rs.getString(1) + "\n- " + rs.getString(2) + "\n- " + rs.getString(3) + "\n- " + rs.getLong(4));
@@ -116,6 +116,35 @@ public class DBConnection {
 					default:
 						break;
 				}
+			} else {
+				int count = stmt.getUpdateCount();
+				if (count >= 1) {
+					System.out.println("Registro Inserido com sucesso!");
+				}else {
+					System.out.println("Registro Falhou!");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void executeSQLProduto(String sql) {
+
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			stmt = conn.createStatement();
+			if (stmt.execute(sql)) {
+				rs = stmt.getResultSet();
+				System.out.println("Produtos encontrados: ");
+				while (rs.next()) {
+					System.out.println("____________________________");
+					System.out.println("- " + rs.getString(1) + "\n- " + rs.getString(2) + "\n- " + rs.getString(3) + "\n- " + rs.getLong(4));
+				}
+				System.out.println("____________________________");
 			} else {
 				int count = stmt.getUpdateCount();
 				if (count >= 1) {

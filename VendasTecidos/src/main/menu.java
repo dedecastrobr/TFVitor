@@ -11,6 +11,7 @@ import tools.Menu;
 		
 		public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Produtos", "Pedidos", "Estoque");
 		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente");
+		public static List<String> opsMenuProdutos = Arrays.asList("Cadastrar Produto", "Lista de Produtos", "Buscar Produto");
 		public static Scanner scan = new Scanner(System.in);
 		public static int numMenu = 0;
 		
@@ -44,6 +45,26 @@ import tools.Menu;
 					} while(op2 != 99);
 					break;
 				case 1:
+					Menu menuP = new Menu("Menu dos Produtos", opsMenuProdutos);
+					menuP.show();
+					int op3 = menuP.getOption();
+					do{
+						switch (op3) {
+						case 0:
+							inserirProduto();
+							break;
+						case 1:
+							listarProdutos();
+							break;
+						case 2:
+							
+							break;
+						default:
+							break;			
+						}
+						menuP.show();
+						op3 = menu.getOption();
+					} while(op3 != 99);
 					break;
 				case 2:
 					break;
@@ -72,7 +93,12 @@ import tools.Menu;
 			System.out.println("Digite o CPF do cliente: ");
 			buscacpf = scan.nextLine();
 			DBConnection conn = new DBConnection();
-			conn.executeSQLBusca("select c.nome, c.email, c.endereco, c.cpf, c.idCliente from Clientes c where cpf=" + buscacpf);
+			conn.executeSQLBuscaC("select c.nome, c.email, c.endereco, c.cpf, c.idCliente from Clientes c where cpf=" + buscacpf);
+		}
+		
+		public static void listarProdutos() {
+			DBConnection conn = new DBConnection();
+			conn.executeSQLProduto("select c.nome, c.email, c.endereco, c.cpf, c.idCliente from Clientes c");
 		}
 		
 		public static void limpaTela() {
