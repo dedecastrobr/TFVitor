@@ -24,10 +24,6 @@ public class Produtos {
 		System.out.println("Preço do produto: ");
 		this.setPreco(scan.nextInt());
 		scan.nextLine();
-		
-		System.out.println("Quantidade no estoque: ");
-		this.setEstoque(scan.nextInt());
-		scan.nextLine();
 	}
 	
 	public void create() {

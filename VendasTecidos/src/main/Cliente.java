@@ -18,6 +18,7 @@ public class Cliente {
 	private Scanner scan = Menu.scan;
 	
 	public Cliente() {
+		scan.nextLine();
 		System.out.println("Informe o nome do cliente: ");
 		this.nomeCliente = scan.nextLine();
 
@@ -60,5 +61,21 @@ public class Cliente {
 
 	public int getIdCliente() {
 		return idCliente;
+	}
+	
+	public String getNome() {
+		return nomeCliente;
+	}
+	
+	public String getEmail() {
+		return emailCliente;
+	}
+	
+	public String getCpf() {
+		return cpfCliente;
+	}
+	
+	public String getEndereco() {
+		return endereco;
 	}
 }

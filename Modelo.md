@@ -4,13 +4,12 @@
 
 ## Sumário
 
-> Descreva sua aplicação e quais possíveis funcinalidades você implementou para solucionar as questões trazidas pelo usuário
+> A aplicação desenvolvida foi feita para suprir as nescessidades de uma loja de Aviamentos, era preciso de um sistema de controle de estoque, produtos e clientes.
 
 
 ### Modelo de Dados:
 
 > Descreva as atividades desenvolvidas, apresente os artefatos gerados através de links e textos explicativos.
-
 
 ### Modelo de Classes:
 
