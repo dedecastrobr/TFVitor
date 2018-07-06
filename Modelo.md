@@ -16,6 +16,7 @@
 
 > Para crição do menu da aplicação foi criado com "switch" dando a opção para o usuário acessar o que for necessário.
 Como no caso do menu de Clientes onde o usuário tem a opção de inserir, listar, buscar clientes ou até mesmo voltar para o menu anterior.
+
 	switch (op2) {
 		case 0:
 			inserirCliente();
@@ -31,6 +32,7 @@ Como no caso do menu de Clientes onde o usuário tem a opção de inserir, lista
 		}
 
 Na criação dos menus foram criados ArrayLists com cada opção e para mostrar o menu foi usado um método para arranjar estas opções na tela.
+
 	public class menu {	
 		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente");
 			public static void main(String[] args) {
