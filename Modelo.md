@@ -1,6 +1,6 @@
 ## Escola Técnica Santo Inácio
 ### Trabalho Final
-### Aluno Fulano de Tal
+### Aluno Vitor Antunes Cazella
 
 ## Sumário
 
@@ -10,16 +10,43 @@
 ### Modelo de Dados:
 
 > Descreva as atividades desenvolvidas, apresente os artefatos gerados através de links e textos explicativos.
+> 
 
 ### Modelo de Classes:
 
-> Como é a sua solução em termos de arquitetura? Aqui você pode linkar diretamente o código gerado e demonstrar todo o seu conhecimento.
+> Para crição do menu da aplicação foi criado com "switch" dando a opção para o usuário acessar o que for necessário.
+Como no caso do menu de Clientes onde o usuário tem a opção de inserir, listar, buscar clientes ou até mesmo voltar para o menu anterior.
+	switch (op2) {
+		case 0:
+			inserirCliente();
+			break;
+		case 1:
+		listarClientes();
+			break;
+		case 2:
+			buscaCliente();
+			break;
+		default:
+			break;
+		}
 
+Na criação dos menus foram criados ArrayLists com cada opção e para mostrar o menu foi usado um método para arranjar estas opções na tela.
+	public class menu {	
+		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente");
+			public static void main(String[] args) {
+				Menu menuC = new Menu("Menu do Cliente", opsMenuCliente);
+				menuC.show();
+		}
+	}
+
+	public void show() {
+		System.out.println("\n" + nomeMenu);
+		for (String string : opsMenu) {
+			System.out.println(opsMenu.indexOf(string) + " - " + string);
+		}
+		System.out.println("99 - Sair");
+	}
 
 ### Conclusão:
 
-> Como você evoluiu dentro dos conceitos desenvolvidos no trabalho? Avalie seus aprendizados analizando os pontos fortes e fracos. O que poderia ter sido difrente, como a aplicação pode evoluir, caso não tenha sido desenvolvida plenamente.
-
-
-
-Dica: Se o arquivo ficar muito grande, você pode qubra-lo em outros e utilizar links.
+> A maior complexidade durante a construção do programa era construir os métodos corretos de manipulação do banco de dados, e foi nesta questão que evolui muito, pesquisando, com ajuda dos colegas e do professor. A aplicação acabou sendo bem simples, algo que poderia ter diferente seria esta questão, melhorar a complexidade da aplicação.
