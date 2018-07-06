@@ -18,11 +18,12 @@ public class DBConnection {
 
 	private String URL = "jdbc:mysql://localhost/";
 	private String USER = "root";
-	private String PASSWD = "cazella1998";
+	private String PASSWD = "root123";
 	private String BANCO = "TFVitor";
 	private String URLBANCO = "jdbc:mysql://localhost/TFVitor";
 
 	private int idCliente = 0;
+	private int idProduto = 0;
 	
 	public DBConnection() {
 
@@ -93,7 +94,7 @@ public class DBConnection {
 				}
 				
 				System.out.println("____________________________");
-				Menu menu = new Menu("", opsMenuBusca);
+				Menu menu = new Menu("Alterar ou excluir", opsMenuBusca);
 				menu.showOps();
 				int Ops = Menu.scan.nextInt();
 				switch(Ops) {
@@ -163,14 +164,14 @@ public class DBConnection {
 		ResultSet rs = null;
 
 		try {
-
+			
 			stmt = conn.createStatement();
 			if (stmt.execute(sql)) {
 				rs = stmt.getResultSet();
 				System.out.println("Produtos encontrados: ");
 				while (rs.next()) {
 					System.out.println("____________________________");
-					System.out.println("- " + rs.getString(1) + "\n- " + rs.getString(2) + "\n- " + rs.getString(3) + "\n- " + rs.getLong(4));
+					System.out.println("- " + rs.getString(1) + "\n- " + rs.getString(2) + "\n- " + rs.getString(3));
 				}
 				System.out.println("____________________________");
 			} else {

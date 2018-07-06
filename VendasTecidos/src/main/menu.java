@@ -98,7 +98,7 @@ import tools.Menu;
 		
 		public static void listarProdutos() {
 			DBConnection conn = new DBConnection();
-			conn.executeSQLProduto("select c.nome, c.email, c.endereco, c.cpf, c.idCliente from Clientes c");
+			conn.executeSQLProduto("select p.nome, p.preco, e.Quantidade from Produto p, Estoque e where p.idEstoque = e.idEstoque");
 		}
 		
 		public static void limpaTela() {

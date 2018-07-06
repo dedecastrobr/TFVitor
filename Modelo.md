@@ -31,7 +31,7 @@ Como no caso do menu de Clientes onde o usuário tem a opção de inserir, lista
 			break;
 		}
 
-Na criação dos menus foram criados ArrayLists com cada opção e para mostrar o menu foi usado um método para arranjar estas opções na tela.
+> Na criação dos menus foram criados ArrayLists com cada opção e para mostrar o menu foi usado um método para arranjar estas opções na tela.
 
 	public class menu {	
 		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente");

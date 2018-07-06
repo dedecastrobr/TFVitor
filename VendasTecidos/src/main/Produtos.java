@@ -24,9 +24,13 @@ public class Produtos {
 		System.out.println("Preço do produto: ");
 		this.setPreco(scan.nextInt());
 		scan.nextLine();
+
+		System.out.println("Quantidade em estoque: ");
+		this.setEstoque(scan.nextInt());
+		scan.nextLine();
 	}
 	
-	public void create() {
+	public void createP() {
 		
 		Connection conn = (new DBConnection()).getConn();
 		Statement stmt = null;
@@ -41,6 +45,28 @@ public class Produtos {
 				int count = stmt.getUpdateCount();
 				if (count >= 1) {
 					System.out.println("Registro Inserido com sucesso!");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+	}
+
+	public void createE() {
+		
+		Connection conn = (new DBConnection()).getConn();
+		Statement stmt = null;
+	
+		String sql = "insert into Estoque(Quantidade) values(" + this.estoque + ")";
+		//System.out.println("print--> " + sql);
+		try {
+			stmt = conn.createStatement();
+			if (stmt.execute(sql)) {
+				System.out.println("Estoque Não funcionou");
+			} else {
+				int count = stmt.getUpdateCount();
+				if (count >= 1) {
+					System.out.println("Estoque Inserido com sucesso!");
 				}
 			}
 		} catch (SQLException e) {
@@ -88,6 +114,5 @@ public class Produtos {
 	public void setEstoque(int estoque) {
 		Estoque = estoque;
 	}
-	
-	
+
 }
