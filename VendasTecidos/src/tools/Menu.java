@@ -40,7 +40,7 @@ public class Menu {
 
 	public int getOption() {
 
-		System.out.println("Digite a opção desejada para "+nomeMenu+":");
+		System.out.println("Digite a opção desejada para " + nomeMenu + ":");
 
 		try {
 			opSelecionada = scan.nextInt();
@@ -53,12 +53,12 @@ public class Menu {
 		return opSelecionada;
 	}
 	
-	public boolean checkValue(String value) {
+	/*public boolean checkValue(String value) {
 		try {
 			int x = Integer.parseInt(value);
 			return true;
 		}catch(Exception e) {
 			return false;
 		}
-	}
+	}*/
 }

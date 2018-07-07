@@ -22,7 +22,7 @@ public class Produtos {
 		this.setNome(scan.nextLine());
 		
 		System.out.println("Preço do produto: ");
-		this.setPreco(scan.nextInt());
+		this.preco = scan.nextDouble();
 		scan.nextLine();
 
 		System.out.println("Quantidade em estoque: ");
@@ -30,12 +30,12 @@ public class Produtos {
 		scan.nextLine();
 	}
 	
-	public void createP() {
+	public void create() {
 		
 		Connection conn = (new DBConnection()).getConn();
 		Statement stmt = null;
 	
-		String sql = "insert into Produto(nome, preco) values('" + this.nome + "','" + this.preco + "')";
+		String sql = "insert into Produto(nome, preco, quantidade) values('" + this.nome + "','" + this.preco + "','" + this.Estoque + "')";
 		//System.out.println("print--> " + sql);
 		try {
 			stmt = conn.createStatement();
@@ -51,29 +51,6 @@ public class Produtos {
 			e.printStackTrace();
 		} 
 	}
-
-	public void createE() {
-		
-		Connection conn = (new DBConnection()).getConn();
-		Statement stmt = null;
-	
-		String sql = "insert into Estoque(Quantidade) values(" + this.estoque + ")";
-		//System.out.println("print--> " + sql);
-		try {
-			stmt = conn.createStatement();
-			if (stmt.execute(sql)) {
-				System.out.println("Estoque Não funcionou");
-			} else {
-				int count = stmt.getUpdateCount();
-				if (count >= 1) {
-					System.out.println("Estoque Inserido com sucesso!");
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-	}
-
 
 	public int getIdProduto() {
 		return idProduto;

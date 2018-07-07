@@ -18,7 +18,6 @@ public class Cliente {
 	private Scanner scan = Menu.scan;
 	
 	public Cliente() {
-		scan.nextLine();
 		System.out.println("Informe o nome do cliente: ");
 		this.nomeCliente = scan.nextLine();
 

@@ -9,7 +9,7 @@ import tools.Menu;
 
 	public class menu {
 		
-		public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Produtos", "Pedidos", "Estoque");
+		public static List<String> opsMenuPrincipal = Arrays.asList("Clientes", "Produtos", "Estoque");
 		public static List<String> opsMenuCliente = Arrays.asList("Cadastrar Novo Cliente", "Lista de Clientes", "Buscar Cliente");
 		public static List<String> opsMenuProdutos = Arrays.asList("Cadastrar Produto", "Lista de Produtos", "Buscar Produto");
 		public static Scanner scan = new Scanner(System.in);
@@ -57,7 +57,7 @@ import tools.Menu;
 							listarProdutos();
 							break;
 						case 2:
-							
+							buscaProduto();
 							break;
 						default:
 							break;			
@@ -67,13 +67,15 @@ import tools.Menu;
 					} while(op3 != 99);
 					break;
 				case 2:
+					estoque();
 					break;
-				case 3:
+				default:
 					break;
 				}
 				menu.show();
 				op = menu.getOption();
 			} while(op != 99);
+		System.out.println("Tchau!");
 		}
 	
 		public static void inserirCliente() {
@@ -98,7 +100,7 @@ import tools.Menu;
 		
 		public static void listarProdutos() {
 			DBConnection conn = new DBConnection();
-			conn.executeSQLProduto("select p.nome, p.preco, e.Quantidade from Produto p, Estoque e where p.idEstoque = e.idEstoque");
+			conn.executeSQLProduto("select p.nome, p.preco, p.Quantidade from Produto p");
 		}
 		
 		public static void limpaTela() {
@@ -107,7 +109,24 @@ import tools.Menu;
 		}
 		
 		public static void inserirProduto() {
-			
+			Produtos pr = new Produtos();
+			if(pr != null) {
+				pr.create();
+			}
 		}
+		
+		public static void buscaProduto() {
+			String buscaNome = "";
+			System.out.println("Digite o nome do Produto: ");
+			buscaNome = scan.nextLine();
+			DBConnection conn = new DBConnection();
+			conn.executeSQLBuscaP("select p.nome, p.preco, p.quantidade, p.idProduto from Produto p where p.nome = '" + buscaNome + "'");
+		}
+		
+		public static void estoque() {
+			DBConnection conn = new DBConnection();
+			conn.executeSQLEstoque("select p.nome, p.quantidade from Produto p");
+		}
+
 }
 

@@ -18,6 +18,20 @@ CREATE SCHEMA IF NOT EXISTS `TFVitor` DEFAULT CHARACTER SET latin1 ;
 USE `TFVitor` ;
 
 -- -----------------------------------------------------
+-- Table `TFVitor`.`Aula`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `TFVitor`.`Aula` ;
+
+CREATE TABLE IF NOT EXISTS `TFVitor`.`Aula` (
+  `idAula` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `horario` VARCHAR(6) NOT NULL,
+  PRIMARY KEY (`idAula`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
 -- Table `TFVitor`.`Clientes`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `TFVitor`.`Clientes` ;
@@ -31,78 +45,7 @@ CREATE TABLE IF NOT EXISTS `TFVitor`.`Clientes` (
   PRIMARY KEY (`idCliente`),
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `TFVitor`.`Estoque`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `TFVitor`.`Estoque` ;
-
-CREATE TABLE IF NOT EXISTS `TFVitor`.`Estoque` (
-  `idEstoque` INT NOT NULL AUTO_INCREMENT,
-  `Quantidade` INT NULL,
-  PRIMARY KEY (`idEstoque`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `TFVitor`.`Produto`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `TFVitor`.`Produto` ;
-
-CREATE TABLE IF NOT EXISTS `TFVitor`.`Produto` (
-  `idProduto` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NOT NULL,
-  `preco` DOUBLE NOT NULL,
-  `idEstoque` INT NOT NULL,
-  PRIMARY KEY (`idProduto`, `idEstoque`),
-  INDEX `fk_Produto_Estoque_idx` (`idEstoque` ASC),
-  CONSTRAINT `fk_Produto_Estoque`
-    FOREIGN KEY (`idEstoque`)
-    REFERENCES `TFVitor`.`Estoque` (`idEstoque`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `TFVitor`.`Aula`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `TFVitor`.`Aula` ;
-
-CREATE TABLE IF NOT EXISTS `TFVitor`.`Aula` (
-  `idAula` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NOT NULL,
-  `horario` VARCHAR(6) NOT NULL,
-  PRIMARY KEY (`idAula`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `TFVitor`.`Vendas`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `TFVitor`.`Vendas` ;
-
-CREATE TABLE IF NOT EXISTS `TFVitor`.`Vendas` (
-  `idCliente` INT(11) NOT NULL,
-  `idProduto` INT NOT NULL,
-  `idEstoque` INT NOT NULL,
-  PRIMARY KEY (`idCliente`, `idProduto`, `idEstoque`),
-  INDEX `fk_Clientes_has_Produto_Produto1_idx` (`idProduto` ASC, `idEstoque` ASC),
-  INDEX `fk_Clientes_has_Produto_Clientes1_idx` (`idCliente` ASC),
-  CONSTRAINT `fk_Clientes_has_Produto_Clientes1`
-    FOREIGN KEY (`idCliente`)
-    REFERENCES `TFVitor`.`Clientes` (`idCliente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Clientes_has_Produto_Produto1`
-    FOREIGN KEY (`idProduto` , `idEstoque`)
-    REFERENCES `TFVitor`.`Produto` (`idProduto` , `idEstoque`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -112,7 +55,7 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `TFVitor`.`Aula_Clientes` ;
 
 CREATE TABLE IF NOT EXISTS `TFVitor`.`Aula_Clientes` (
-  `Aula_idAula` INT NOT NULL,
+  `Aula_idAula` INT(11) NOT NULL,
   `Clientes_idCliente` INT(11) NOT NULL,
   PRIMARY KEY (`Aula_idAula`, `Clientes_idCliente`),
   INDEX `fk_Aula_has_Clientes_Clientes1_idx` (`Clientes_idCliente` ASC),
@@ -127,7 +70,49 @@ CREATE TABLE IF NOT EXISTS `TFVitor`.`Aula_Clientes` (
     REFERENCES `TFVitor`.`Clientes` (`idCliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `TFVitor`.`Produto`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `TFVitor`.`Produto` ;
+
+CREATE TABLE IF NOT EXISTS `TFVitor`.`Produto` (
+  `idProduto` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `preco` DOUBLE NOT NULL,
+  `quantidade` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`idProduto`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `TFVitor`.`Vendas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `TFVitor`.`Vendas` ;
+
+CREATE TABLE IF NOT EXISTS `TFVitor`.`Vendas` (
+  `idCliente` INT(11) NOT NULL,
+  `idProduto` INT(11) NOT NULL,
+  PRIMARY KEY (`idCliente`, `idProduto`),
+  INDEX `fk_Clientes_has_Produto_Clientes1_idx` (`idCliente` ASC),
+  INDEX `fk_Clientes_has_Produto_Produto1_idx` (`idProduto` ASC),
+  CONSTRAINT `fk_Clientes_has_Produto_Clientes1`
+    FOREIGN KEY (`idCliente`)
+    REFERENCES `TFVitor`.`Clientes` (`idCliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Clientes_has_Produto_Produto1`
+    FOREIGN KEY (`idProduto`)
+    REFERENCES `TFVitor`.`Produto` (`idProduto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
